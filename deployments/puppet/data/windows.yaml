@@ -1,0 +1,17 @@
+---
+splunk_otel_collector::collector_version: ''
+splunk_otel_collector::collector_install_dir: >-
+  "%{facts.win_programfiles}/Splunk/OpenTelemetry Collector"
+splunk_otel_collector::collector_config_dir: >-
+  "%{facts.win_programdata}/Splunk/OpenTelemetry Collector"
+splunk_otel_collector::splunk_bundle_dir: >-
+  "%{facts.win_programfiles}/Splunk/OpenTelemetry Collector/agent-bundle"
+splunk_otel_collector::splunk_collectd_dir: >-
+  "%{facts.win_programfiles}/Splunk/OpenTelemetry Collector/agent-bundle/run/collectd"
+splunk_otel_collector::collector_config_source: >-
+  "%{facts.win_programfiles}/Splunk/OpenTelemetry Collector/agent_config.yaml"
+splunk_otel_collector::collector_config_dest: >-
+  "%{facts.win_programdata}/Splunk/OpenTelemetry Collector/agent_config.yaml"
+splunk_otel_collector::fluentd_config_source: >-
+  "%{facts.win_programfiles}/Splunk/OpenTelemetry Collector/fluentd/td-agent.conf"
+splunk_otel_collector::fluentd_config_dest: ''

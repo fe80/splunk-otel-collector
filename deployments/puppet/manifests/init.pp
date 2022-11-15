@@ -1,44 +1,44 @@
 # Main class that installs and configures the agent
 class splunk_otel_collector (
-  $splunk_access_token     = '',  # required
-  $splunk_realm            = '',  # required
+  $splunk_access_token,
+  $splunk_realm,
+  $splunk_memory_total_mib,
+  $splunk_ballast_size_mib,
+  $fluentd_capng_c_version,
+  $fluentd_systemd_version,
+  $manage_repo,
+  $with_auto_instrumentation,
+  $package_stage,
+  $apt_repo_url,
+  $apt_repo,
+  $service_user,
+  $service_group,
+  $apt_gpg_key,
+  $yum_gpg_key,
+  $with_fluentd,
+  $fluentd_repo_base,
+  $fluentd_gpg_key,
+  $auto_instrumentation_ld_so_preload,
+  $auto_instrumentation_resource_attributes,
+  $auto_instrumentation_service_name,
+  $collector_version,
+  $splunk_bundle_dir,
+  $splunk_collectd_dir,
+  $collector_config_source,
+  $collector_config_dest,
+  $fluentd_version,
+  $fluentd_config_source,
+  $fluentd_config_dest,
+  $auto_instrumentation_version,
+  $auto_instrumentation_java_agent_jar,
   $splunk_ingest_url       = "https://ingest.${splunk_realm}.signalfx.com",
   $splunk_api_url          = "https://api.${splunk_realm}.signalfx.com",
   $splunk_trace_url        = "${splunk_ingest_url}/v2/trace",
   $splunk_hec_url          = "${splunk_ingest_url}/v1/log",
   $splunk_hec_token        = $splunk_access_token,
-  $splunk_bundle_dir       = $splunk_otel_collector::params::splunk_bundle_dir,
-  $splunk_collectd_dir     = $splunk_otel_collector::params::splunk_collectd_dir,
-  $splunk_memory_total_mib = '512',
-  $splunk_ballast_size_mib = '',
-  $collector_version       = $splunk_otel_collector::params::collector_version,
-  $collector_config_source = $splunk_otel_collector::params::collector_config_source,
-  $collector_config_dest   = $splunk_otel_collector::params::collector_config_dest,
-  $package_stage           = 'release',  # collector package repository stage: release, beta, or test
-  $apt_repo_url            = 'https://splunk.jfrog.io/splunk/otel-collector-deb',
-  $apt_repo                = 'main',
   $yum_repo_url            = "https://splunk.jfrog.io/splunk/otel-collector-rpm/${package_stage}/\$basearch",
   $win_repo_url            = "https://dl.signalfx.com/splunk-otel-collector/msi/${package_stage}",
-  $service_user            = 'splunk-otel-collector',  # linux only
-  $service_group           = 'splunk-otel-collector',  # linux only
-  $apt_gpg_key             = 'https://splunk.jfrog.io/splunk/otel-collector-deb/splunk-B3CD4420.gpg',
-  $yum_gpg_key             = 'https://splunk.jfrog.io/splunk/otel-collector-rpm/splunk-B3CD4420.pub',
-  $with_fluentd            = true,
-  $fluentd_repo_base       = 'https://packages.treasuredata.com',
-  $fluentd_gpg_key         = 'https://packages.treasuredata.com/GPG-KEY-td-agent',
-  $fluentd_version         = $splunk_otel_collector::params::fluentd_version,
-  $fluentd_config_source   = $splunk_otel_collector::params::fluentd_config_source,
-  $fluentd_config_dest     = $splunk_otel_collector::params::fluentd_config_dest,
-  $fluentd_capng_c_version = '<=0.2.2',  # linux only
-  $fluentd_systemd_version = '<=1.0.2',  # linux only
-  $manage_repo             = true,  # linux only
-  $with_auto_instrumentation                = false,  # linux only
-  $auto_instrumentation_version             = $splunk_otel_collector::params::auto_instrumentation_version,  # linux only
-  $auto_instrumentation_ld_so_preload       = '',  # linux only
-  $auto_instrumentation_java_agent_jar      = $splunk_otel_collector::params::auto_instrumentation_java_agent_jar,  # linux only
-  $auto_instrumentation_resource_attributes = '',  # linux only
-  $auto_instrumentation_service_name        = ''   # linux only
-) inherits splunk_otel_collector::params {
+) {
 
   $collector_service_name = 'splunk-otel-collector'
   $collector_package_name = $::osfamily ? {

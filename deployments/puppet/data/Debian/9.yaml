@@ -1,0 +1,2 @@
+---
+splunk_otel_collector::fluentd_version: 3.7.1-0
