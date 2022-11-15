@@ -9,6 +9,10 @@
   "issues_url": "https://github.com/signalfx/splunk-otel-collector/issues",
   "dependencies": [
     {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.13.1 < 9.0.0"
+    },
+    {
       "name": "puppetlabs/apt",
       "version_requirement": ">= 4.1.0 <= 7.0.0"
     },
