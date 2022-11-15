@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 # Returns the PROGRAMDATA env var on windows
 
 Facter.add(:win_programdata) do
-  confine :osfamily => :windows
+  confine kenel: :windows
   setcode do
     ENV['PROGRAMDATA']
   end

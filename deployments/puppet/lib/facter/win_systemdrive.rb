@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 # Returns the SystemDrive env var on windows
 
 Facter.add(:win_systemdrive) do
-  confine :osfamily => :windows
+  confine kernel: :windows
   setcode do
     ENV['SystemDrive']
   end
